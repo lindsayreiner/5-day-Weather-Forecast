@@ -1,4 +1,42 @@
+/* font-family: 'Allison', cursive;
+font-family: 'Gentium Basic', serif;
+font-family: 'Mate SC', serif; */
+
 :root {
   --lightbg: #c0bbbb;
   --darkbg: #3d3939;
+}
+
+aside {
+  width: 30%;
+  height: 100%;
+  padding-left: 0.5rem;
+  margin-left: 0.1rem;
+  margin-top: 1rem;
+  float: left;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+}
+
+#btn-style {
+  color: #282aa7;
+  border-color: #282aa7;
+}
+
+#btn-style:hover {
+  background-color: #282aa7;
+  color: aliceblue;
+}
+
+#header {
+  background-image: url("https://uploads-ssl.webflow.com/5ec207a448d573153616868a/60e32bdbc05d815a7368622e_Mesh%2035.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: aliceblue;
+  border-bottom: 3px blanchedalmond solid;
+}
+
+#nav-style {
+  border-bottom: 2px rgb(82, 79, 79) solid;
 }

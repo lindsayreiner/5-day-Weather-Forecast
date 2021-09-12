@@ -47,17 +47,23 @@ font-family: 'Mate SC', serif; */
 .weather-card {
   background-color: var(--darkbg);
   color: var(--light);
+  width: 25vw;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 .city-button {
-  background-color: rgb(161, 154, 154);
-  color: black;
+  color: aliceblue !important;
+  background-color: #0d3f80 !important;
 }
 
-/* .todays-forecast {
-  border: 1px solid var(--darkbg);
-} */
+.city-button:hover {
+  color: aliceblue !important;
+  background-color: #0e2e58 !important;
+}
+
+.todays-forecast {
+  max-height: auto;
+}

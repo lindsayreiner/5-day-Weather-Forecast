@@ -24,31 +24,59 @@
       <h1 id="site-name" class="text-center">Weather Dashboard</h1>
     </header>
 
-    <aside id="left-aside" class="search-field">
-      <h2 id="search-title">Search for a city:</h2>
-      <br />
-      <nav id="nav-style" class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Paris, France"
-              aria-label="Search"
-            />
-            <button
-              id="btn-style"
-              class="btn btn-outline-success"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
-    </aside>
+    <div class="d-flex p-2 bd-highlight flex-row">
+      <section
+        id="search-container"
+        class="d-flex p-2 bd-highlight flex-column"
+      >
+        <h2 id="search-title"><strong>Search for a city:</strong></h2>
+        <br />
+        <nav id="nav-style" class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <form class="d-flex">
+              <input
+                id="city-input"
+                class="form-control me-2"
+                type="search"
+                placeholder="Paris, France"
+                aria-label="Search"
+              />
+              <button
+                id="search-btn"
+                class="btn btn-outline-success"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+        <div id="cities" class="searched-cities"></div>
+      </section>
 
-    <div id="current-weather" class="todays-forecast"></div>
+      <section id="current-weather-container" class="hidden d-flex p-2 bd-highlight flex-column">
+        <h2 id="city-and-date" class="city-header">
+          [City name here]<span>[current date here]</span>[icon]
+        </h2>
+      </br>
+        <p id="temp" class="forecast">Temp:</p>
+        <p id="wind" class="forecast">Wind:</p>
+        <p id="humidity" class="forecast">Humidity:</p>
+        <p id="uv-index" class="forecast">UV-Index:</p>
+      </section>
+    </div>
+
+    <section id="future-weather" class="hidden d-flex p-2 bd-highlight flex-column 5day-forcast">
+      <h3><strong>5-Day Forecast:</strong></h3>
+      <div id="card-container" class="d-flex p-2 bd-highlight flex-row justify-content-between">
+      <!-- <div class="weather-card">Date</div>
+      <div class="weather-card">Date</div>
+      <div class="weather-card">Date</div>
+      <div class="weather-card">Date</div>
+      <div class="weather-card">Date</div> -->
+      </div>
+    </section>
+
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

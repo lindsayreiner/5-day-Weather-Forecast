@@ -3,28 +3,8 @@ font-family: 'Gentium Basic', serif;
 font-family: 'Mate SC', serif; */
 
 :root {
-  --lightbg: #c0bbbb;
-  --darkbg: #3d3939;
-}
-
-aside {
-  width: 30%;
-  height: 100%;
-  padding-left: 0.5rem;
-  margin-left: 0.1rem;
-  margin-top: 1rem;
-  float: left;
-  box-shadow: inset 5px 0 5px -5px #29627e;
-}
-
-#btn-style {
-  color: #282aa7;
-  border-color: #282aa7;
-}
-
-#btn-style:hover {
-  background-color: #282aa7;
-  color: aliceblue;
+  --light: #eee8e8;
+  --darkbg: #252333;
 }
 
 #header {
@@ -37,6 +17,47 @@ aside {
   border-bottom: 3px blanchedalmond solid;
 }
 
-#nav-style {
-  border-bottom: 2px rgb(82, 79, 79) solid;
+#search-container {
+  width: 30%;
+  margin-left: -0.5rem;
+  box-shadow: inset 5px 0 5px -5px #29627e;
 }
+
+#search-btn {
+  color: #282aa7;
+  border-color: #282aa7;
+}
+
+#search-btn:hover {
+  background-color: #282aa7;
+  color: aliceblue;
+}
+
+#nav-style {
+  border-bottom: 1.5px rgb(82, 79, 79) solid;
+}
+
+#current-weather-container {
+  width: 70%;
+  border: 1.5px var(--darkbg) solid;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.weather-card {
+  background-color: var(--darkbg);
+  color: var(--light);
+}
+
+.hidden {
+  display: none;
+}
+
+.city-button {
+  background-color: rgb(161, 154, 154);
+  color: black;
+}
+
+/* .todays-forecast {
+  border: 1px solid var(--darkbg);
+} */

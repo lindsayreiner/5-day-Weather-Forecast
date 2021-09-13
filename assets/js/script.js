@@ -17,6 +17,11 @@ var todayHumidity = $('#today-humidity');
 var todayDescription = $('#today-description');
 var todayIcon = $('#weather-icon');
 
+//Current weather and future weather containers
+
+var todayWeather = $('#current-weather-container');
+var futureWeather = $('#future-weather');
+
 //Five day forecast card variables
 
 
@@ -28,11 +33,14 @@ $('#search-btn').on('click', function (e) {
     e.preventDefault();
     var city = $(this).siblings("#city-input").val();
 
+    todayWeather.removeClass('not-visible')
+    futureWeather.removeClass('hidden')
+
     firstAPICall(city);
 });
 
 var cityBtn = $('.city-button')
-cityBtn.on('click', function (e, city) {
+$('#cities').on('click', 'button', function (e, city) {
     e.preventDefault();
     console.log(e)
 

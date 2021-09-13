@@ -50,9 +50,13 @@ font-family: 'Mate SC', serif; */
   width: 25vw;
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
+
+.not-visible {
+  visibility: hidden;
+}
 
 .city-button {
   color: aliceblue !important;

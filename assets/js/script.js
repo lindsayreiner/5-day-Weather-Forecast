@@ -24,11 +24,27 @@ var todayIcon = $('#weather-icon');
 
 var searchBtn = $("#search-btn");
 
-
-$('#search-btn').on('click', async function (e) {
+$('#search-btn').on('click', function (e) {
     e.preventDefault();
-
     var city = $(this).siblings("#city-input").val();
+
+    firstAPICall(city);
+});
+
+var cityBtn = $('.city-button')
+cityBtn.on('click', function (e, city) {
+    e.preventDefault();
+    console.log(e)
+
+    console.log(city)
+    firstAPICall(city);
+});
+
+
+
+
+async function firstAPICall(city) {
+
 
     var cityQueryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
 
@@ -46,13 +62,6 @@ $('#search-btn').on('click', async function (e) {
             var cityLongitude = data['coord']['lon'];
             var weatherDescription = data['weather'][0]['description'];
             var weatherIcon = data['weather'][0]['main'];
-
-            console.log(nameResponse);
-            console.log(tempResponse);
-            console.log(humidityResponse);
-            console.log(weatherDescription);
-            console.log(windResponse);
-            console.log(data);
 
 
             todayCity.text(nameResponse);
@@ -85,20 +94,15 @@ $('#search-btn').on('click', async function (e) {
     renderCities();
     // secondAPICall();
 
-});
+};
 
-// function secondAPICall() {
+// async function secondAPICall(cityLatitude, cityLongitude) {
 
 //     var uvIndexAPICall = `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}`
 //     fetch(uvIndexAPICall);
 // }
 
-$(".city-button").on('click', function (e) {
-    e.preventDefault();
-    // firstAPICall();
 
-
-})
 
 function addCity(city) {
     var cityText = cityUserInput.value;
@@ -133,12 +137,15 @@ function renderCities() {
         cityButtons.text(city);
         cityButtons.attr("data-index", i);
         cityButtons.addClass("city-button btn btn-primary w-100 mt-2");
-        cityButtons.attr("type", "button");
+        cityButtons.attr("type", "submit");
+        cityButtons.attr('id', city)
 
         cityList.append(cityButtons);
 
     }
 }
+
+
 
 function init() {
     renderCities();

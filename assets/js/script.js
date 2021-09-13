@@ -25,10 +25,7 @@ var futureWeather = $('#future-weather');
 //Five day forecast card variables
 
 
-
-
 var searchBtn = $("#search-btn");
-
 $('#search-btn').on('click', function (e) {
     e.preventDefault();
     var city = $(this).siblings("#city-input").val();
@@ -48,7 +45,11 @@ $('#cities').on('click', 'button', function (e, city) {
     firstAPICall(city);
 });
 
-
+var clearBtn = $('#clear-btn');
+clearBtn.on('click', function () {
+    localStorage.clear();
+    location.reload();
+})
 
 
 async function firstAPICall(city) {
@@ -120,7 +121,7 @@ function addCity(city) {
     cities = getCities();
 
     cities.push(city);
-    city.value = "";
+    cityUserInput.text('');
 
 
     localStorage.setItem('city-history', JSON.stringify(cities))

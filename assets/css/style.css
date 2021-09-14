@@ -4,7 +4,11 @@ font-family: 'Mate SC', serif; */
 
 :root {
   --light: #eee8e8;
-  --darkbg: #252333;
+  --darkbg: #313263;
+}
+
+html {
+  height: 100%;
 }
 
 #header {
@@ -47,7 +51,8 @@ font-family: 'Mate SC', serif; */
 .weather-card {
   background-color: var(--darkbg);
   color: var(--light);
-  width: 25vw;
+  width: 15vw;
+  height: 30vh;
 }
 
 .hidden {
@@ -77,28 +82,53 @@ font-family: 'Mate SC', serif; */
 }
 
 .uv-extreme-zone {
-  padding: 6px;
-  border-radius: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
   background-color: maroon;
   color: white;
 }
 
 .uv-red-zone {
-  padding: 6px;
-  border-radius: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
   background-color: red;
   color: rgb(255, 255, 255);
 }
 
 .uv-yellow-zone {
-  padding: 6px;
-  border-radius: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
   background-color: rgb(245, 245, 13);
 }
 
 .uv-green-zone {
-  padding: 6px;
-  border-radius: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
   background-color: rgb(49, 158, 49);
   color: white;
+}
+
+.date-style {
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+.icon-style {
+}
+
+#today-city,
+.date-style {
+  display: inline;
+}
+
+.future-forecast {
+  margin-left: 12px;
+}
+
+#card-container {
+  margin-left: 3px;
 }

@@ -21,6 +21,7 @@ var todayUVIndex = $('#today-uv-index')
 
 var todayWeather = $('#current-weather-container');
 var futureWeather = $('#future-weather');
+var cardContainer = $('#card-container');
 
 //Five day forecast card variables
 
@@ -65,7 +66,6 @@ async function firstAPICall(city) {
     console.log(data)
 
     var nameResponse = data['name'];
-    var dateResponse = data['']
     var tempResponse = data['main']['temp'];
     var windResponse = data['wind']['speed'];
     var humidityResponse = data['main']['humidity'];
@@ -73,22 +73,25 @@ async function firstAPICall(city) {
     var cityLon = data['coord']['lon'];
     var weatherDescription = data['weather'][0]['description'];
     var weatherIcon = data['weather'][0]['icon'];
-
+    var todayMoment = moment().format("(MM/DD/YYYY)");
+    console.log(todayMoment)
+    // $("#today-date").text(todayMoment.format("MMM Do YY"));
 
     todayCity.text(nameResponse);
+    todayDate.text(todayMoment)
     todayDescription.html('<strong>Forecast:&nbsp</strong>' + weatherDescription);
     todayTemp.html('<strong>Temp:&nbsp</strong>' + tempResponse + ' F');
     todayWind.html('<strong>Wind:&nbsp</strong> ' + windResponse + ' m.p.h.');
     todayHumidity.html('<strong>Humidity:&nbsp</strong> ' + humidityResponse + '%');
 
+    var todaysDate = $('<p>').attr('id', 'today-date');
+    todaysDate.addClass('date-style');
+    todayCity.append(todaysDate);
+    todaysDate.text(todayMoment);
+
     var todayIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`);
     todayIcon.addClass('icon-style');
-    todayCity.append(todayIcon);
-
-
-
-
-
+    todaysDate.append(todayIcon);
 
     addCity(nameResponse);
     renderCities();
@@ -99,15 +102,11 @@ async function firstAPICall(city) {
 async function secondAPICall(cityLat, cityLon) {
 
     var uvIndexAPICall = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${APIKey}`
-
     const response = await fetch(uvIndexAPICall);
-
     const data = await response.json();
-
     console.log(data);
 
     var uvIndexResponse = data['current']['uvi'];
-
     var uvSpan = $('<span>').text(uvIndexResponse);
 
     todayUVIndex.html('<strong>UV-Index:&nbsp</strong>');
@@ -116,24 +115,43 @@ async function secondAPICall(cityLat, cityLon) {
 
     if (uvIndexResponse >= 8) {
         uvSpan.addClass('uv-extreme-zone');
-        console.log('extreme')
+
     } else if (uvIndexResponse < 8 && uvIndexResponse >= 6) {
         uvSpan.addClass('uv-red-zone');
-        console.log('red')
+
     } else if (uvIndexResponse < 6 && uvIndexResponse >= 3) {
         uvSpan.addClass('uv-yellow-zone');
-        console.log('yellow')
+
     } else {
         uvSpan.addClass('uv-green-zone');
-        console.log('green')
     }
+
+    for (var i = 0; i = 4; i++) {
+        var futureTemp = data['daily'][i][temp];
+        var futureWind = data['daily'][i]['weather']['wind_speed'];
+        var futureHumidity = data['daily'][i]['feels_like']['humidity'];
+
+        var cardDetails = $('<p>');
+        cardDetails.addClass('card-style');
+        cardContainer.append(cardDetails);
+        cardDetails.text(futureTemp);
+
+        var todaysDate = $('<p>').attr('id', 'today-date');
+        todaysDate.addClass('date-style');
+        todayCity.append(todaysDate);
+        todaysDate.text(todayMoment);
+
+        var todaysDate = $('<p>').attr('id', 'today-date');
+        todaysDate.addClass('date-style');
+        todayCity.append(todaysDate);
+        todaysDate.text(todayMoment);
+
+    }
+
 
 }
 
-
-
 function addCity(city) {
-
     cities = getCities();
 
     if (cities.includes(city)) {
@@ -142,26 +160,20 @@ function addCity(city) {
 
     cities.push(city);
     cityUserInput.text('');
-
-
     localStorage.setItem('city-history', JSON.stringify(cities))
 }
 
 function getCities() {
-
     return (JSON.parse(localStorage.getItem('city-history')) || []);
-
 }
 
 function renderCities() {
 
     cities = getCities();
-
     cityList.empty();
 
     for (var i = 0; i < cities.length; i++) {
         var city = cities[i];
-
         var cityButtons = $("<button>")
         cityButtons.text(city);
         cityButtons.attr("data-index", i);
@@ -174,11 +186,8 @@ function renderCities() {
     }
 }
 
-
-
 function init() {
     renderCities();
-
 }
 
 init();

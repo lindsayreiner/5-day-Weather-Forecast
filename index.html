@@ -38,7 +38,7 @@
                 id="city-input"
                 class="form-control me-2"
                 type="search"
-                placeholder="Paris, France"
+                placeholder="Search locations"
                 aria-label="Search"
               />
               <button
@@ -66,22 +66,18 @@
           id="current-weather-container"
           class="not-visible d-flex flex-column p-2 h-50 bd-highlight"
         >
-          <h2 id="today-city" class="city-header">
-            [City name here]<span id="today-date"
-              ><em>[current date here]</em></span
-            >
-          </h2>
-          <p id="today-description"><em>[Insert Description Here]</em></p>
-          <p id="today-temp" class="forecast">Temp:</p>
-          <p id="today-wind" class="forecast">Wind:</p>
-          <p id="today-humidity" class="forecast">Humidity:</p>
-          <p id="today-uv-index" class="forecast">UV-Index:</p>
+          <h2 id="today-city" class="city-header"></h2>
+          <p id="today-description"><em></em></p>
+          <p id="today-temp" class="forecast"></p>
+          <p id="today-wind" class="forecast"></p>
+          <p id="today-humidity" class="forecast"></p>
+          <p id="today-uv-index" class="forecast"></p>
         </section>
 
         <section id="future-weather" class="hidden p-2 bd-highlight">
-          <h3><strong>5-Day Forecast:</strong></h3>
+          <h3 class="future-forecast p-2"><strong>5-Day Forecast:</strong></h3>
           <div id="card-container" class="d-flex p-2 bd-highlight">
-            <div class="weather-card m-3">
+            <div class="weather-card m-2 rounded">
               <p>Date: [date]</p>
               <a href="#"></a>
               <p>Temp: [temp]</p>
@@ -89,7 +85,7 @@
               <p>Humidity: [humidity]</p>
             </div>
 
-            <div class="weather-card m-3">
+            <div class="weather-card m-2 rounded">
               <p>Date: [date]</p>
               <a href="#"></a>
               <p>Temp: [temp]</p>
@@ -97,7 +93,7 @@
               <p>Humidity: [humidity]</p>
             </div>
 
-            <div class="weather-card m-3">
+            <div class="weather-card m-2 rounded">
               <p>Date: [date]</p>
               <a href="#"></a>
               <p>Temp: [temp]</p>
@@ -105,7 +101,7 @@
               <p>Humidity: [humidity]</p>
             </div>
 
-            <div class="weather-card m-3">
+            <div class="weather-card m-2 rounded">
               <p>Date: [date]</p>
               <a href="#"></a>
               <p>Temp: [temp]</p>
@@ -113,7 +109,7 @@
               <p>Humidity: [humidity]</p>
             </div>
 
-            <div class="weather-card m-3">
+            <div class="weather-card m-2 rounded">
               <p>Date: [date]</p>
               <a href="#"></a>
               <p>Temp: [temp]</p>
@@ -140,6 +136,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

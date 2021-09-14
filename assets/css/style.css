@@ -71,3 +71,34 @@ font-family: 'Mate SC', serif; */
 .todays-forecast {
   max-height: auto;
 }
+
+.icon-style {
+  width: 60px;
+}
+
+.uv-extreme-zone {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: maroon;
+  color: white;
+}
+
+.uv-red-zone {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: red;
+  color: rgb(255, 255, 255);
+}
+
+.uv-yellow-zone {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: rgb(245, 245, 13);
+}
+
+.uv-green-zone {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: rgb(49, 158, 49);
+  color: white;
+}

@@ -27,7 +27,7 @@
     <div class="d-flex p-2 bd-highlight flex-row">
       <section
         id="search-container"
-        class="d-flex p-2 bd-highlight flex-column"
+        class="d-flex p-2 bd-highlight flex-column w-25"
       >
         <h2 id="search-title"><strong>Search for a city:</strong></h2>
         <br />
@@ -52,68 +52,78 @@
           </div>
         </nav>
         <div id="cities" class="searched-cities"></div>
-        <button id="clear-btn" class="btn btn-outline-success mt-3" type="button">Clear History</button>
+        <button
+          id="clear-btn"
+          class="btn btn-outline-success mt-3"
+          type="button"
+        >
+          Clear History
+        </button>
       </section>
 
-      <section id="current-weather-container" class="not-visible d-flex p-2 h-25 min-vw-100 bd-highlight flex-column">
-        <h2 id="today-city" class="city-header">
-          [City name here]<span id="today-date"><em>[current date here]</em></span><span id="weather-icon">[icon]</span>
-        </h2>
-      </br>
-      <p id="today-description"><em>[Insert Description Here]</em></p>
-        <p id="today-temp" class="forecast">Temp:</p>
-        <p id="today-wind" class="forecast">Wind:</p>
-        <p id="today-humidity" class="forecast">Humidity:</p>
-        <p id="today-uv-index" class="forecast">UV-Index:</p>
-      </section>
+      <div id="all-weather" class="d-flex flex-column w-75">
+        <section
+          id="current-weather-container"
+          class="not-visible d-flex flex-column p-2 h-50 bd-highlight"
+        >
+          <h2 id="today-city" class="city-header">
+            [City name here]<span id="today-date"
+              ><em>[current date here]</em></span
+            >
+          </h2>
+          <p id="today-description"><em>[Insert Description Here]</em></p>
+          <p id="today-temp" class="forecast">Temp:</p>
+          <p id="today-wind" class="forecast">Wind:</p>
+          <p id="today-humidity" class="forecast">Humidity:</p>
+          <p id="today-uv-index" class="forecast">UV-Index:</p>
+        </section>
+
+        <section id="future-weather" class="hidden p-2 bd-highlight">
+          <h3><strong>5-Day Forecast:</strong></h3>
+          <div id="card-container" class="d-flex p-2 bd-highlight">
+            <div class="weather-card m-3">
+              <p>Date: [date]</p>
+              <a href="#"></a>
+              <p>Temp: [temp]</p>
+              <p>Wind: [wind]</p>
+              <p>Humidity: [humidity]</p>
+            </div>
+
+            <div class="weather-card m-3">
+              <p>Date: [date]</p>
+              <a href="#"></a>
+              <p>Temp: [temp]</p>
+              <p>Wind: [wind]</p>
+              <p>Humidity: [humidity]</p>
+            </div>
+
+            <div class="weather-card m-3">
+              <p>Date: [date]</p>
+              <a href="#"></a>
+              <p>Temp: [temp]</p>
+              <p>Wind: [wind]</p>
+              <p>Humidity: [humidity]</p>
+            </div>
+
+            <div class="weather-card m-3">
+              <p>Date: [date]</p>
+              <a href="#"></a>
+              <p>Temp: [temp]</p>
+              <p>Wind: [wind]</p>
+              <p>Humidity: [humidity]</p>
+            </div>
+
+            <div class="weather-card m-3">
+              <p>Date: [date]</p>
+              <a href="#"></a>
+              <p>Temp: [temp]</p>
+              <p>Wind: [wind]</p>
+              <p>Humidity: [humidity]</p>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-
-    <section id="future-weather" class="hidden p-2 bd-highlight">
-      <h3><strong>5-Day Forecast:</strong></h3>
-      <div id="card-container" class="d-flex p-2 bd-highlight">
-
-      <div class="weather-card m-3">
-        <p>Date: [date]</p>
-        <a href="#"></a>
-        <p>Temp: [temp]</p>
-        <p>Wind: [wind]</p>
-        <p>Humidity: [humidity]</p>
-      </div>
-
-      <div class="weather-card m-3">
-        <p>Date: [date]</p>
-        <a href="#"></a>
-        <p>Temp: [temp]</p>
-        <p>Wind: [wind]</p>
-        <p>Humidity: [humidity]</p>
-      </div>
-      
-      <div class="weather-card m-3">
-        <p>Date: [date]</p>
-        <a href="#"></a>
-        <p>Temp: [temp]</p>
-        <p>Wind: [wind]</p>
-        <p>Humidity: [humidity]</p>
-      </div>
-      
-      <div class="weather-card m-3">
-        <p>Date: [date]</p>
-        <a href="#"></a>
-        <p>Temp: [temp]</p>
-        <p>Wind: [wind]</p>
-        <p>Humidity: [humidity]</p>
-      </div>
-      
-      <div class="weather-card m-3">
-        <p>Date: [date]</p>
-        <a href="#"></a>
-        <p>Temp: [temp]</p>
-        <p>Wind: [wind]</p>
-        <p>Humidity: [humidity]</p>
-      </div>
-      </div>
-    </section>
-
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -133,5 +143,3 @@
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
-
-

@@ -127,18 +127,18 @@ async function secondAPICall(cityLat, cityLon) {
     }
 
     for (var i = 1; i <= 5; i++) {
-        var futureDate = data['daily'][i]['dt'];
+        var unixDate = data['daily'][i]['dt'];
         var futureTemp = data['daily'][i]['temp']['day'];
         var futureWind = data['daily'][i]['wind_speed'];
         var futureHumidity = data['daily'][i]['humidity'];
         var futureIcon = data['daily'][i]['weather'][0]['icon'];
-        console.log(futureDate);
+
 
 
         var weatherCardContainer = $('<div>');
         weatherCardContainer.addClass('card-style weather-card m-2 rounded');
 
-        var cardDate = new Date(futureDate * 1000);
+        var formattedDate = moment.unix(unixDate).format("MM/DD/YYYY");
         var cardIcon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${futureIcon}@2x.png`);
         cardIcon.addClass('small-icon-style');
         var cardTemp = $('<p>');
@@ -149,7 +149,7 @@ async function secondAPICall(cityLat, cityLon) {
         cardWind.html('<strong>Wind speed: </strong>' + futureWind + 'm.p.h.');
         cardHumidity.html('<strong>Humidity: </strong>' + futureHumidity + '%');
 
-        weatherCardContainer.append(cardDate);
+        weatherCardContainer.append(formattedDate);
         weatherCardContainer.append(cardIcon);
         weatherCardContainer.append(cardTemp);
         weatherCardContainer.append(cardWind);

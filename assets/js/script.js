@@ -75,7 +75,7 @@ async function firstAPICall(city) {
     var weatherIcon = data['weather'][0]['icon'];
     var todayMoment = moment().format("(MM/DD/YYYY)");
     console.log(todayMoment)
-    // $("#today-date").text(todayMoment.format("MMM Do YY"));
+
 
     todayCity.text(nameResponse);
     todayDate.text(todayMoment)
@@ -126,25 +126,33 @@ async function secondAPICall(cityLat, cityLon) {
         uvSpan.addClass('uv-green-zone');
     }
 
-    for (var i = 0; i = 4; i++) {
-        var futureTemp = data['daily'][i][temp];
-        var futureWind = data['daily'][i]['weather']['wind_speed'];
-        var futureHumidity = data['daily'][i]['feels_like']['humidity'];
+    for (var i = 0; i <= 4; i++) {
 
-        var cardDetails = $('<p>');
-        cardDetails.addClass('card-style');
-        cardContainer.append(cardDetails);
-        cardDetails.text(futureTemp);
+        var futureTemp = data['daily'][i]['temp']['day'];
+        var futureWind = data['daily'][i]['wind_speed'];
+        var futureHumidity = data['daily'][i]['humidity'];
+        var futureIcon = data['daily'][i]['weather'][0]['icon']
 
-        var todaysDate = $('<p>').attr('id', 'today-date');
-        todaysDate.addClass('date-style');
-        todayCity.append(todaysDate);
-        todaysDate.text(todayMoment);
+        var weatherCardContainer = $('<div>');
+        weatherCardContainer.addClass('card-style weather-card m-2 rounded');
 
-        var todaysDate = $('<p>').attr('id', 'today-date');
-        todaysDate.addClass('date-style');
-        todayCity.append(todaysDate);
-        todaysDate.text(todayMoment);
+        var cardIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${futureIcon}@2x.png`);
+        cardIcon.addClass('icon-style');
+        var cardTemp = $('<p>');
+        var cardWind = $('<p>');
+        var cardHumidity = $('<p>');
+
+        cardTemp.text('Temp: ' + futureTemp);
+        cardWind.text('Wind speed: ' + futureWind + 'm.p.h.');
+        cardHumidity.text('Humidity: ' + futureHumidity + '%');
+
+        weatherCardContainer.append(futureIcon);
+        weatherCardContainer.append(cardTemp);
+        weatherCardContainer.append(cardWind);
+        weatherCardContainer.append(cardHumidity);
+        $('#card-container').append(weatherCardContainer);
+
+
 
     }
 
@@ -153,13 +161,15 @@ async function secondAPICall(cityLat, cityLon) {
 
 function addCity(city) {
     cities = getCities();
+    cityUserInput.val('');
+    console.log(cityUserInput)
 
     if (cities.includes(city)) {
         return;
     }
 
     cities.push(city);
-    cityUserInput.text('');
+
     localStorage.setItem('city-history', JSON.stringify(cities))
 }
 

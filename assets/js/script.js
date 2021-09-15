@@ -58,7 +58,7 @@ clearBtn.on('click', function () {
 async function firstAPICall(city) {
 
 
-    var cityQueryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
+    var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
 
     const response = await fetch(cityQueryURL);
 
@@ -89,7 +89,7 @@ async function firstAPICall(city) {
     todayCity.append(todaysDate);
     todaysDate.text(todayMoment);
 
-    var todayIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`);
+    var todayIcon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`);
     todayIcon.addClass('icon-style');
     todaysDate.append(todayIcon);
 
@@ -126,27 +126,31 @@ async function secondAPICall(cityLat, cityLon) {
         uvSpan.addClass('uv-green-zone');
     }
 
-    for (var i = 0; i <= 4; i++) {
-
+    for (var i = 1; i <= 5; i++) {
+        var futureDate = data['daily'][i]['dt'];
         var futureTemp = data['daily'][i]['temp']['day'];
         var futureWind = data['daily'][i]['wind_speed'];
         var futureHumidity = data['daily'][i]['humidity'];
-        var futureIcon = data['daily'][i]['weather'][0]['icon']
+        var futureIcon = data['daily'][i]['weather'][0]['icon'];
+        console.log(futureDate);
+
 
         var weatherCardContainer = $('<div>');
         weatherCardContainer.addClass('card-style weather-card m-2 rounded');
 
-        var cardIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${futureIcon}@2x.png`);
-        cardIcon.addClass('icon-style');
+        var cardDate = new Date(futureDate * 1000);
+        var cardIcon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${futureIcon}@2x.png`);
+        cardIcon.addClass('small-icon-style');
         var cardTemp = $('<p>');
         var cardWind = $('<p>');
         var cardHumidity = $('<p>');
 
-        cardTemp.text('Temp: ' + futureTemp);
-        cardWind.text('Wind speed: ' + futureWind + 'm.p.h.');
-        cardHumidity.text('Humidity: ' + futureHumidity + '%');
+        cardTemp.html('<strong>Temp: </strong>' + futureTemp);
+        cardWind.html('<strong>Wind speed: </strong>' + futureWind + 'm.p.h.');
+        cardHumidity.html('<strong>Humidity: </strong>' + futureHumidity + '%');
 
-        weatherCardContainer.append(futureIcon);
+        weatherCardContainer.append(cardDate);
+        weatherCardContainer.append(cardIcon);
         weatherCardContainer.append(cardTemp);
         weatherCardContainer.append(cardWind);
         weatherCardContainer.append(cardHumidity);

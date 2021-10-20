@@ -57,7 +57,6 @@ clearBtn.on('click', function () {
 
 async function firstAPICall(city) {
 
-
     var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
 
     const response = await fetch(cityQueryURL);
@@ -101,6 +100,10 @@ async function firstAPICall(city) {
 
 async function secondAPICall(cityLat, cityLon) {
 
+    if (weatherCardContainer) {
+        weatherCardContainer.remove();
+    }
+
     var uvIndexAPICall = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${APIKey}`
     const response = await fetch(uvIndexAPICall);
     const data = await response.json();
@@ -139,6 +142,7 @@ async function secondAPICall(cityLat, cityLon) {
         weatherCardContainer.addClass('card-style weather-card m-2 rounded');
 
         var formattedDate = moment.unix(unixDate).format("MM/DD/YYYY");
+        // formattedDate.addClass('date-style');
         var cardIcon = $('<img>').attr('src', `https://openweathermap.org/img/wn/${futureIcon}@2x.png`);
         cardIcon.addClass('small-icon-style');
         var cardTemp = $('<p>');
@@ -155,12 +159,7 @@ async function secondAPICall(cityLat, cityLon) {
         weatherCardContainer.append(cardWind);
         weatherCardContainer.append(cardHumidity);
         $('#card-container').append(weatherCardContainer);
-
-
-
     }
-
-
 }
 
 function addCity(city) {

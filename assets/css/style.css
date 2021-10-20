@@ -51,8 +51,7 @@ html {
 .weather-card {
   background-color: var(--darkbg);
   color: var(--light);
-  width: 15vw;
-  height: 30vh;
+  padding: 10px;
 }
 
 .hidden {
@@ -121,9 +120,6 @@ html {
   margin-left: 10px;
 }
 
-.icon-style {
-}
-
 #today-city,
 .date-style {
   display: inline;
@@ -135,4 +131,8 @@ html {
 
 #card-container {
   margin-left: 3px;
+}
+
+.date-style {
+  text-weight: bolder;
 }

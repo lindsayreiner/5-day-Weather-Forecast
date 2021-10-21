@@ -100,9 +100,6 @@ async function firstAPICall(city) {
 
 async function secondAPICall(cityLat, cityLon) {
 
-    if (weatherCardContainer) {
-        weatherCardContainer.remove();
-    }
 
     var uvIndexAPICall = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${APIKey}`
     const response = await fetch(uvIndexAPICall);
@@ -129,6 +126,9 @@ async function secondAPICall(cityLat, cityLon) {
         uvSpan.addClass('uv-green-zone');
     }
 
+    var weatherCardContainer = $('<div>');
+    weatherCardContainer.addClass('d-flex card-style m-2 rounded');
+
     for (var i = 1; i <= 5; i++) {
         var unixDate = data['daily'][i]['dt'];
         var futureTemp = data['daily'][i]['temp']['day'];
@@ -137,9 +137,9 @@ async function secondAPICall(cityLat, cityLon) {
         var futureIcon = data['daily'][i]['weather'][0]['icon'];
 
 
+        var weatherCard = $('<div>');
+        weatherCard.addClass('weather-card m-2 rounded');
 
-        var weatherCardContainer = $('<div>');
-        weatherCardContainer.addClass('card-style weather-card m-2 rounded');
 
         var formattedDate = moment.unix(unixDate).format("MM/DD/YYYY");
         // formattedDate.addClass('date-style');
@@ -153,13 +153,16 @@ async function secondAPICall(cityLat, cityLon) {
         cardWind.html('<strong>Wind speed: </strong>' + futureWind + 'm.p.h.');
         cardHumidity.html('<strong>Humidity: </strong>' + futureHumidity + '%');
 
-        weatherCardContainer.append(formattedDate);
-        weatherCardContainer.append(cardIcon);
-        weatherCardContainer.append(cardTemp);
-        weatherCardContainer.append(cardWind);
-        weatherCardContainer.append(cardHumidity);
-        $('#card-container').append(weatherCardContainer);
+        weatherCard.append(formattedDate);
+        weatherCard.append(cardIcon);
+        weatherCard.append(cardTemp);
+        weatherCard.append(cardWind);
+        weatherCard.append(cardHumidity);
+        weatherCardContainer.append(weatherCard);
     }
+
+    $('#card-container').html(weatherCardContainer);
+
 }
 
 function addCity(city) {

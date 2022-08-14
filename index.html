@@ -1,102 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Allison&family=Gentium+Basic:ital,wght@0,400;0,700;1,400&family=Mate+SC&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>5-day Weather Forecast</title>
-  </head>
-  <body>
-    <header id="header" class="page-name">
-      <h1 id="site-name" class="text-center">Weather Dashboard</h1>
-    </header>
 
-    <div class="d-flex p-2 bd-highlight flex-row">
-      <section
-        id="search-container"
-        class="d-flex p-2 bd-highlight flex-column w-25"
-      >
-        <h2 id="search-title"><strong>Search for a city:</strong></h2>
-        <br />
-        <nav id="nav-style" class="navbar navbar-light bg-light">
-          <div class="container-fluid">
-            <form class="d-flex">
-              <input
-                id="city-input"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search locations"
-                aria-label="Search"
-              />
-              <button
-                id="search-btn"
-                class="btn btn-outline-success"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-        </nav>
-        <div id="cities" class="searched-cities"></div>
-        <button
-          id="clear-btn"
-          class="btn btn-outline-success mt-3"
-          type="button"
-        >
-          Clear History
-        </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Allison&family=Gentium+Basic:ital,wght@0,400;0,700;1,400&family=Mate+SC&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>5-day Weather Forecast</title>
+</head>
+
+<body>
+  <header id="header" class="page-name">
+    <h1 id="site-name" class="text-center">Weather Dashboard</h1>
+  </header>
+
+  <div class="d-flex p-2 bd-highlight flex-row">
+    <section id="search-container" class="d-flex p-2 bd-highlight flex-column w-25">
+      <h2 id="search-title"><strong>Search for a city:</strong></h2>
+      <br />
+      <nav id="nav-style" class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <form class="d-flex">
+            <input id="city-input" class="form-control" type="search" placeholder="Search locations"
+              aria-label="Search" />
+            <button id="search-btn" class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </nav>
+      <div id="cities" class="searched-cities"></div>
+      <button id="clear-btn" class="btn btn-outline-success mt-3" type="button">
+        Clear History
+      </button>
+    </section>
+
+    <div id="all-weather" class="d-flex flex-column w-75">
+      <section id="current-weather-container" class="not-visible d-flex flex-column p-2 h-50 bd-highlight">
+        <h2 id="today-city" class="city-header"></h2>
+        <p id="today-timezone" class="timezone"></p>
+        <p id="today-description"><em></em></p>
+        <p id="today-temp" class="forecast"></p>
+        <p id="today-wind" class="forecast"></p>
+        <p id="today-humidity" class="forecast"></p>
+        <p id="today-uv-index" class="forecast"></p>
       </section>
 
-      <div id="all-weather" class="d-flex flex-column w-75">
-        <section
-          id="current-weather-container"
-          class="not-visible d-flex flex-column p-2 h-50 bd-highlight"
-        >
-          <h2 id="today-city" class="city-header"></h2>
-          <p id="today-description"><em></em></p>
-          <p id="today-temp" class="forecast"></p>
-          <p id="today-wind" class="forecast"></p>
-          <p id="today-humidity" class="forecast"></p>
-          <p id="today-uv-index" class="forecast"></p>
-        </section>
-
-        <section id="future-weather" class="hidden p-2 bd-highlight">
-          <h3 class="future-forecast p-2"><strong>5-Day Forecast:</strong></h3>
-          <div id="card-container" class="d-flex p-2 bd-highlight"></div>
-        </section>
-      </div>
+      <section id="future-weather" class="hidden p-2 bd-highlight">
+        <h3 class="future-forecast p-2"><strong>5-Day Forecast:</strong></h3>
+        <div id="card-container" class="d-flex p-2 bd-highlight"></div>
+      </section>
     </div>
+  </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>

@@ -27,9 +27,14 @@ html {
   box-shadow: inset 5px 0 5px -5px #29627e;
 }
 
+#city-input {
+  min-width: 100px;
+}
+
 #search-btn {
   color: #282aa7;
   border-color: #282aa7;
+  margin-left: 1em;
 }
 
 #search-btn:hover {

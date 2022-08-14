@@ -11,6 +11,7 @@ var cities = [];
 
 var todayCity = $('#today-city');
 var todayDate = $('#today-date');
+var timezone = $('#today-timezone')
 var todayTemp = $('#today-temp');
 var todayWind = $('#today-wind');
 var todayHumidity = $('#today-humidity');
@@ -55,14 +56,19 @@ clearBtn.on('click', function () {
 
 
 
-async function firstAPICall(city) {
+async function firstAPICall(city, state) {
 
-    var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKey}`;
-
+    var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state}&units=imperial&appid=${APIKey}`;
     const response = await fetch(cityQueryURL);
-
     const data = await response.json()
+    console.log('Raw data \n-----------');
     console.log(data)
+
+    var stateApiCall = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${state}n&limit=5&appid=${APIKey}`;
+    const secondResponse = await fetch(stateApiCall);
+    const secondCallData = await secondResponse.json();
+    console.log('State data \n-----------');
+    console.log(secondCallData);
 
     var nameResponse = data['name'];
     var tempResponse = data['main']['temp'];
@@ -75,9 +81,13 @@ async function firstAPICall(city) {
     var todayMoment = moment().format("(MM/DD/YYYY)");
     console.log(todayMoment)
 
+    var stateResponse = secondCallData[0]['state'];
+    console.log(stateResponse);
 
-    todayCity.text(nameResponse);
-    todayDate.text(todayMoment)
+
+    todayCity.html(nameResponse + ', ' + stateResponse);
+    todayDate.text(todayMoment);
+
     todayDescription.html('<strong>Forecast:&nbsp</strong>' + weatherDescription);
     todayTemp.html('<strong>Temp:&nbsp</strong>' + tempResponse + ' F');
     todayWind.html('<strong>Wind:&nbsp</strong> ' + windResponse + ' m.p.h.');
@@ -92,19 +102,21 @@ async function firstAPICall(city) {
     todayIcon.addClass('icon-style');
     todaysDate.append(todayIcon);
 
+
     addCity(nameResponse);
     renderCities();
     secondAPICall(cityLat, cityLon);
-
 };
 
 async function secondAPICall(cityLat, cityLon) {
-
-
     var uvIndexAPICall = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${APIKey}`
     const response = await fetch(uvIndexAPICall);
     const data = await response.json();
+    console.log('Lat/Lon data \n-----------');
     console.log(data);
+
+    var timeZone = data['timezone'];
+    timezone.html('<strong>Timezone:&nbsp</strong> ' + timeZone);
 
     var uvIndexResponse = data['current']['uvi'];
     var uvSpan = $('<span>').text(uvIndexResponse);
@@ -163,7 +175,9 @@ async function secondAPICall(cityLat, cityLon) {
 
     $('#card-container').html(weatherCardContainer);
 
+
 }
+
 
 function addCity(city) {
     cities = getCities();
